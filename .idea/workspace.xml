@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="504ba5a2-6c5d-49e9-a15a-0b19cad5f0cc" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="api_rest_analisis_datos" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="42" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/model/elasticsearch/index_resumen_ventas_mensuales.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="1271" column="29" selection-start-line="1271" selection-start-column="29" selection-end-line="1271" selection-end-column="29" />
+              <folding>
+                <element signature="e#167#4533#0" />
+                <element signature="e#4611#9697#0" />
+                <element signature="e#9784#12563#0" />
+                <element signature="e#12647#15284#0" />
+                <element signature="e#15389#20672#0" />
+                <element signature="e#20777#25966#0" />
+                <element signature="e#26061#29499#0" />
+                <element signature="e#29581#35505#0" />
+                <element signature="e#35620#40681#0" />
+                <element signature="e#40777#45765#0" />
+                <element signature="e#45852#50831#0" />
+                <element signature="e#50925#55827#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/microsoftSQL/ccserver_conection.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/index.hbs">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/layout.hbs">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/ventas_router.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="663">
+              <caret line="49" column="70" selection-start-line="49" selection-start-column="70" selection-end-line="49" selection-end-column="70" />
+              <folding>
+                <element signature="e#400#459#0" />
+                <element signature="e#1885#2144#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controller/ventas_controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="697">
+              <caret line="41" selection-start-line="41" selection-end-line="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>canal_venta</find>
+      <find>anio</find>
+      <find>plataforma</find>
+      <find>value</find>
+      <find>fechas_categoria</find>
+    </findStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/model/db_historico_ventas.js" />
+        <option value="$APPLICATION_CONFIG_DIR$/javascript/nodejs/8.9.1/core-modules/module.js" />
+        <option value="$PROJECT_DIR$/model/db_info_puntos_venta/coll_catalogos.js" />
+        <option value="$PROJECT_DIR$/model/db_info_puntos_venta/coll_cadenas.js" />
+        <option value="$PROJECT_DIR$/model/db_info_puntos_venta/coll_cliente_mired.js" />
+        <option value="$PROJECT_DIR$/model/db_info_puntos_venta/coll_grupos.js" />
+        <option value="$PROJECT_DIR$/model/db_info_puntos_venta/db_info_puntos_venta.js" />
+        <option value="$PROJECT_DIR$/model/db_info_puntos_venta/coll_comercios.js" />
+        <option value="$PROJECT_DIR$/model/db_historico_ventas/coll_catalogos.js" />
+        <option value="$PROJECT_DIR$/model/db_historico_ventas/coll_comercios.js" />
+        <option value="$PROJECT_DIR$/model/db_historico_ventas/coll_ventas_mensuales_hiper.js" />
+        <option value="$PROJECT_DIR$/model/db_historico_ventas/coll_ventas_diarias_hiper.js" />
+        <option value="vm:633" />
+        <option value="$PROJECT_DIR$/model/db_historico_ventas/db_historico_ventas.js" />
+        <option value="vm:275" />
+        <option value="vm:373" />
+        <option value="$PROJECT_DIR$/model/elasticsearch/conection.js" />
+        <option value="$PROJECT_DIR$/bin/www" />
+        <option value="$PROJECT_DIR$/controller/util_controller.js" />
+        <option value="$PROJECT_DIR$/controller/puntos_venta_controller.js" />
+        <option value="vm:514" />
+        <option value="vm:735" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
+        <option value="$PROJECT_DIR$/controller/index_controller.js" />
+        <option value="$PROJECT_DIR$/routes/puntos_venta_router.js" />
+        <option value="$PROJECT_DIR$/routes/admin_router.js" />
+        <option value="$PROJECT_DIR$/controller/catalogos_controller.js" />
+        <option value="$PROJECT_DIR$/routes/catalogos_router.js" />
+        <option value="$PROJECT_DIR$/model/elasticsearch/index_catalogos.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/model/microsoftSQL/contbroadnet.js" />
+        <option value="vm:571" />
+        <option value="vm:572" />
+        <option value="vm:577" />
+        <option value="vm:576" />
+        <option value="vm:574" />
+        <option value="vm:573" />
+        <option value="$PROJECT_DIR$/model/microsoftSQL/dbreports.js" />
+        <option value="$PROJECT_DIR$/util_autenticacion.js" />
+        <option value="$PROJECT_DIR$/routes/index_router.js" />
+        <option value="$PROJECT_DIR$/routes/rutas_router.js" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/model/microsoftSQL/dbgestion.js" />
+        <option value="$PROJECT_DIR$/controller/rutas_controller.js" />
+        <option value="$PROJECT_DIR$/model/elasticsearch/elasticsearh_conection.js" />
+        <option value="$PROJECT_DIR$/model/microsoftSQL/ccserver_conection.js" />
+        <option value="$PROJECT_DIR$/routes/ventas_router.js" />
+        <option value="$PROJECT_DIR$/controller/ventas_controller.js" />
+        <option value="$PROJECT_DIR$/config.js" />
+        <option value="$PROJECT_DIR$/model/elasticsearch/index_resumen_ventas_mensuales.js" />
+        <option value="$PROJECT_DIR$/model/util_model.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="455" />
+    <option name="y" value="364" />
+    <option name="width" value="455" />
+    <option name="height" value="182" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="api_rest_analisis_datos" type="cbb8eebc:String" user="api_rest_analisis_datos" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="api_rest_analisis_datos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api_rest_analisis_datos" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api_rest_analisis_datos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api_rest_analisis_datos" type="462c0819:PsiDirectoryNode" />
+              <item name="bin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api_rest_analisis_datos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api_rest_analisis_datos" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api_rest_analisis_datos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api_rest_analisis_datos" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="elasticsearch" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api_rest_analisis_datos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api_rest_analisis_datos" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="microsoftSQL" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api_rest_analisis_datos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api_rest_analisis_datos" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api_rest_analisis_datos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api_rest_analisis_datos" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="SearchEverywhereHistoryKey" value="host_elasticsearch&#9;null&#9;null" />
+    <property name="ToolWindowRun.ShowToolbar" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="javascript.nodejs.core.library.configured.version" value="10.16.3" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../paguina_web_analisis_datos" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\jorge\analisis-datos\api_rest_analisis_datos\model\db_historico_ventas" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\jorge\analisis-datos\api_rest_analisis_datos" />
+      <recent name="E:\jorge\analisis-datos\api_rest_analisis_datos\model" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Node.js.index_resumen_ventas_mensuales.js">
+    <configuration name="index_resumen_ventas_mensuales.js" type="NodeJSConfigurationType" temporary="true" path-to-js-file="$PROJECT_DIR$/bin/www" working-dir="$PROJECT_DIR$/model/elasticsearch">
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Node.js.bin\www" />
+      <item itemvalue="Node.js.index_resumen_ventas_mensuales.js" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.index_resumen_ventas_mensuales.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="504ba5a2-6c5d-49e9-a15a-0b19cad5f0cc" name="Default" comment="" />
+      <created>1513009715790</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1513009715790</updated>
+      <workItem from="1513009747239" duration="83971000" />
+      <workItem from="1513979761009" duration="9523000" />
+      <workItem from="1515519824329" duration="105773000" />
+      <workItem from="1516919402143" duration="5578000" />
+      <workItem from="1517236970603" duration="79933000" />
+      <workItem from="1518616100970" duration="28342000" />
+      <workItem from="1519227834427" duration="11082000" />
+      <workItem from="1519335548944" duration="166435000" />
+      <workItem from="1521664185791" duration="63013000" />
+      <workItem from="1523572188055" duration="659000" />
+      <workItem from="1523633760463" duration="2975000" />
+      <workItem from="1524170154848" duration="3754000" />
+      <workItem from="1525299041549" duration="2428000" />
+      <workItem from="1529346166422" duration="1854000" />
+      <workItem from="1530713097781" duration="248000" />
+      <workItem from="1530713376815" duration="33000" />
+      <workItem from="1530732566289" duration="75000" />
+      <workItem from="1530733059902" duration="883000" />
+      <workItem from="1535488633888" duration="6700000" />
+      <workItem from="1536852298927" duration="8988000" />
+      <workItem from="1537478921113" duration="625000" />
+      <workItem from="1537544420176" duration="1305000" />
+      <workItem from="1537914761223" duration="656000" />
+      <workItem from="1539282324817" duration="85000" />
+      <workItem from="1542036450314" duration="1236000" />
+      <workItem from="1543265515277" duration="1197000" />
+      <workItem from="1543934188014" duration="4299000" />
+      <workItem from="1544482725685" duration="4438000" />
+      <workItem from="1545079786664" duration="1063000" />
+      <workItem from="1545403149478" duration="8544000" />
+      <workItem from="1546439266180" duration="11959000" />
+      <workItem from="1546986914422" duration="1344000" />
+      <workItem from="1547090012180" duration="4890000" />
+      <workItem from="1547470661734" duration="30146000" />
+      <workItem from="1548087865937" duration="2881000" />
+      <workItem from="1549389343380" duration="3274000" />
+      <workItem from="1550174496547" duration="4368000" />
+      <workItem from="1551382694964" duration="12979000" />
+      <workItem from="1553026339724" duration="850000" />
+      <workItem from="1554229826704" duration="1424000" />
+      <workItem from="1555352746248" duration="243000" />
+      <workItem from="1578329097552" duration="71000" />
+      <workItem from="1580924154902" duration="1189000" />
+      <workItem from="1582734170190" duration="593000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="681906000" />
+  </component>
+  <component name="TodoView" selected-index="2">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="455" y="364" width="455" height="182" extended-state="7" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49346405" visible="true" weight="0.1822542" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" sideWeight="0.50653595" side_tool="true" weight="0.23288691" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49107143" visible="true" weight="0.34369886" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.33333334" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32838285" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32843137" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5089286" side_tool="true" weight="0.64705884" />
+      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49346405" visible="true" weight="0.1875" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" sideWeight="0.50653595" side_tool="true" weight="0.23288691" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49107143" visible="true" weight="0.20751634" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.33006537" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32843137" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5089286" side_tool="true" weight="0.64705884" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32843137" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/.." />
+    </ignored-roots>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/model/elasticsearch/index_resumen_ventas_mensuales.js</url>
+          <line>1247</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/model/elasticsearch/index_resumen_ventas_mensuales.js</url>
+          <line>1362</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/nodejs/8.9.1/core-modules/module.js" />
+    <entry file="file://$PROJECT_DIR$/model/db_historico_ventas/coll_grupos.js" />
+    <entry file="file://$PROJECT_DIR$/model/db_historico_ventas/coll_cliente_mired.js" />
+    <entry file="file://$PROJECT_DIR$/model/db_info_puntos_venta/db_info_puntos_venta.js" />
+    <entry file="file://$PROJECT_DIR$/model/db_historico_ventas/coll_catalogos.js" />
+    <entry file="file://$PROJECT_DIR$/model/db_historico_ventas/coll_comercios.js" />
+    <entry file="file://$PROJECT_DIR$/model/db_historico_ventas/coll_ventas_diarias_hiper.js" />
+    <entry file="file://$PROJECT_DIR$/model/db_historico_ventas/coll_ventas_mensuales_hiper.js" />
+    <entry file="file://$PROJECT_DIR$/views/error.hbs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/db_historico_ventas/coll_cadenas.js" />
+    <entry file="file://$PROJECT_DIR$/model/db_historico_ventas/db_historico_ventas.js" />
+    <entry file="file://$PROJECT_DIR$/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3706">
+          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/runConfigurations/bin_www.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/api_rest_analisis_datos.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/index_controller.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/express/lib/router/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1487">
+          <caret line="457" selection-start-line="457" selection-end-line="457" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/puntos_venta_router.js" />
+    <entry file="file://$PROJECT_DIR$/controller/puntos_venta_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="2" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/rutas_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/admin_router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index_router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="37" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util_autenticacion.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="16" column="14" lean-forward="true" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/www">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/microsoftSQL/dbreports.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/microsoftSQL/dbgestion.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/microsoftSQL/contbroadnet.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="24" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/util_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/elasticsearch/elasticsearh_conection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/catalogos_router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="58" selection-start-line="4" selection-start-column="58" selection-end-line="4" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/catalogos_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/rutas_router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/elasticsearch/index_catalogos.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="66" selection-start-line="3" selection-start-column="66" selection-end-line="3" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/util_model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="30" column="50" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="42" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/microsoftSQL/ccserver_conection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.hbs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/layout.hbs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/ventas_router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="49" column="70" selection-start-line="49" selection-start-column="70" selection-end-line="49" selection-end-column="70" />
+          <folding>
+            <element signature="e#400#459#0" />
+            <element signature="e#1885#2144#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/ventas_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/elasticsearch/index_resumen_ventas_mensuales.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="1271" column="29" selection-start-line="1271" selection-start-column="29" selection-end-line="1271" selection-end-column="29" />
+          <folding>
+            <element signature="e#167#4533#0" />
+            <element signature="e#4611#9697#0" />
+            <element signature="e#9784#12563#0" />
+            <element signature="e#12647#15284#0" />
+            <element signature="e#15389#20672#0" />
+            <element signature="e#20777#25966#0" />
+            <element signature="e#26061#29499#0" />
+            <element signature="e#29581#35505#0" />
+            <element signature="e#35620#40681#0" />
+            <element signature="e#40777#45765#0" />
+            <element signature="e#45852#50831#0" />
+            <element signature="e#50925#55827#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
