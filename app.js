@@ -12,6 +12,7 @@ var index_router = require('./routes/index_router');
 var catalogos_router = require('./routes/catalogos_router');
 var ventas_router = require('./routes/ventas_router');
 var rutas_router = require('./routes/rutas_router');
+var trx_router = require('./routes/trx_router');
 
 
 var app = express();
@@ -48,6 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/',index_router);
 app.use('/catalogos', catalogos_router);
 app.use('/ventas', ventas_router);
+app.use('/trx', trx_router);
 app.use('/rutas', rutas_router);
 
 // catch 404 and forward to error handler
