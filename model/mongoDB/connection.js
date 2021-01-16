@@ -17,6 +17,7 @@ async function listCollections(dbo){
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   const dbo = db.db(namedb);
+  listCollections(dbo);
   console.log("model db", dbo);
   exports.dbo=dbo;
 });

@@ -3,7 +3,22 @@ let router = express.Router();
 let trx_controller = require('../controller/trx_controller');
 //let comercios_controller = require('../controller/comercios_controller');
 
-router.get('/obtener_trx_n_periodo', trx_controller.obtener_trx_n_periodo);
+//Añadir periodo Anual, mensual, diario. 
+//Añadir suma de las transacciones por producto group producto sum 
+//
+
+router.get('/obtener_trx', trx_controller.obtener_trx);
 router.get('/obtener_comercios', trx_controller.obtener_comercios);
+router.get('/pagos', trx_controller.obtener_pagos);
+router.get('/obtener_trx_n_periodo', trx_controller.obtener_trx_n_periodo);
+router.get('/obtener_promedio_trx_n_periodo', trx_controller.obtener_promedio_trx_n_periodo);
+router.get('/obtener_promedio_trx', trx_controller.obtener_promedio_trx);
+router.get('/obtener_n_trx_n_periodo', trx_controller.obtener_n_trx_n_periodo);
+router.get('/obtener_promedio_pago_n_periodo', trx_controller.obtener_promedio_pago_n_periodo);
+router.get('/obtener_n_pago_n_periodo', trx_controller.obtener_n_pago_n_periodo);
+router.get('/obtener_comercios_por_locacion', trx_controller.obtener_comercios_por_locacion);
+router.get('/obtener_comercios_por_fecha_creacion', trx_controller.obtener_comercios_por_fecha_creacion);
+router.get('/obtener_rfm', trx_controller.obtener_rfm);
+router.get('/obtener_grupo_rfm', trx_controller.obtener_grupo_rfm);
 
 module.exports = router;
