@@ -188,7 +188,9 @@ exports.obtener_comercios_por_locacion = function(req, res, next, res_function){
           }
         }
       }
+      return rfm_comercios;
     }
+
 
 
     function getDays(rfm_comercios, fechafin){
@@ -205,7 +207,55 @@ exports.obtener_comercios_por_locacion = function(req, res, next, res_function){
       return new_rfm_comercios;
     }
 
+    function agregar_grupo_rfm(rfm_comercios){
+      for(var i=0; i<rfm_comercios.length; i++){
+        var r=rfm_comercios[i].recency;
+        var f=rfm_comercios[i].frequency;
+        var m=rfm_comercios[i].monetary;
+        if ((r==4 || r==5) && (f==4 || f==5) && (m==4 || m==5))
+            rfm_comercios[i]["grupo_rfm"]="CAMPEON";
+        if ((r>=2 && r<=5) && (f>=3 && f<=5) && (m>=3 && m<=5))
+            rfm_comercios[i]["grupo_rfm"]="LEAL";   
+        if ((r>=3 && r<=5) && (f>=1&& f<=3) && (m>=1 && m<=3))
+            rfm_comercios[i]["grupo_rfm"]="LEAL EN POTENCIA";  
+        if ((r>=4 && r<=5) && (f>=0 && f<=1) && (m>=0 && m<=1))
+            rfm_comercios[i]["grupo_rfm"]="NUEVO";   
+        if ((r>=3 && r<=4) && (f>=0 && f<=1) && (m>=0 && m<=1))
+            rfm_comercios[i]["grupo_rfm"]="PROMETEDOR"; 
+        if ((r>=2 && r<=3) && (f>=2 && f<=3) && (m>=2 && m<=3))
+            rfm_comercios[i]["grupo_rfm"]="NECESITA ATENCION";   
+        if ((r>=2 && r<=3) && (f>=0 && f<=2) && (m>=0 && m<=2))
+            rfm_comercios[i]["grupo_rfm"]="POR DORMIRSE";  
+        if ((r>=0 && r<=2) && (f>=2 && f<=5) && (m>=2 && m<=5))
+            rfm_comercios[i]["grupo_rfm"]="EN RIESGO";   
+        if ((r>=0 && r<=1) && (f>=4 && f<=5) && (m>=4 && m<=5))
+            rfm_comercios[i]["grupo_rfm"]="NO PODEMOS PERDERLO";   
+        if ((r>=1 && r<=2) && (f>=1 && f<=2) && (m>=1 && m<=2))
+            rfm_comercios[i]["grupo_rfm"]="DORMIDO";  
+        if ((r>=0 && r<=2) && (f>=0 && f<=2) && (m>=0 && m<=2))
+            rfm_comercios[i]["grupo_rfm"]="PERDIDO";
+      }
+      return rfm_comercios;
+    }
 
+    function agregar_comercios_cero(comercios, rfm_comercios){
+      var lista_comercios_existentes=[];
+      for(var i=0; i<rfm_comercios.length; i++)
+        lista_comercios_existentes.push(rfm_comercios[i].id_comercio);
+      let difference = comercios.filter(x => !lista_comercios_existentes.includes(x));
+      for(var c=0; c<difference.length; c++){
+        rfm_comercios.push({"_id": difference[c], 
+                            "ultimo_deposito": "",
+                            "numero_deposito": 0,
+                            "avg_deposito":0,
+                            "days":0,
+                            "monetary":0,
+                            "frequency":0,
+                            "recency":0
+                          })
+      }
+      return rfm_comercios;
+    }
 
 
     exports.obtener_grupo_rfm = function(req, res, next, res_function){
@@ -236,7 +286,9 @@ exports.obtener_comercios_por_locacion = function(req, res, next, res_function){
     
             if (err2) console.log(err2);
             var result2=getDays(resulttrx, fecha_fin);
-            getRFM(result2);
+            result2=getRFM(result2);
+            result2=agregar_comercios_cero(result,result2);
+            result2=agregar_grupo_rfm(result2);
             res_function(null,result2, req, res, next);
           });
         }));
