@@ -136,7 +136,8 @@ exports.obtener_suma_trx_n_periodo = function(req, res, next, res_function){
   (function(err, result) {
     console.log("result comereerr", result)
     if (err) console.log(err);
-    let querytrx= {"fecha_trx": { $lt : fecha_fin, $gte: fecha_inicio}, "idcomercio": { $in: result}, "producto":new RegExp('^' + producto)};
+    //let querytrx= {"fecha_trx": { $lt : fecha_fin, $gte: fecha_inicio}, "idcomercio": { $in: result}, "producto":new RegExp('^' + producto)};
+    let querytrx= {"fecha_trx": { $lt : fecha_fin, $gte: fecha_inicio}, "idcomercio": { $in: result}};
     
     
     if(periodo === "DIARIO")
@@ -148,8 +149,8 @@ exports.obtener_suma_trx_n_periodo = function(req, res, next, res_function){
         }, 
         {
           $group: {
-            _id: "$fecha_trx" , 
-            "prom_trx":{$sum: "$monto"}
+            _id: {"fecha_trx":"$fecha_trx", "producto":"$producto"} , 
+            "prom_trx":{$sum: "$monto"},
           }
         }, 
         {
@@ -171,9 +172,9 @@ exports.obtener_suma_trx_n_periodo = function(req, res, next, res_function){
         }, 
         {
           $group: {
-            _id: {$substr: ['$fecha_trx', 0, 6]} , 
+            _id: {$substr: ['$fecha_trx', 0, 6] , "producto":"$producto"} , 
             "prom_trx":{$sum: "$monto"},
-            //"MonthValue": { "$first": "$DueDateMonth" }
+            
           }
         }, 
         {
@@ -194,7 +195,7 @@ exports.obtener_suma_trx_n_periodo = function(req, res, next, res_function){
         }, 
         {
           $group: {
-            _id: {$substr: ['$fecha_trx', 0, 4]} , 
+            _id: {$substr: ['$fecha_trx', 0, 4], "producto":"$producto"} , 
             "prom_trx":{$sum: "$monto"},
             //"MonthValue": { "$first": "$DueDateMonth" }
           }
