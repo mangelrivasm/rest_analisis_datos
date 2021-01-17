@@ -21,5 +21,7 @@ router.get('/obtener_comercios_por_locacion', trx_controller.obtener_comercios_p
 router.get('/obtener_comercios_por_fecha_creacion', trx_controller.obtener_comercios_por_fecha_creacion);
 router.get('/obtener_rfm', trx_controller.obtener_rfm);
 router.get('/obtener_grupo_rfm', trx_controller.obtener_grupo_rfm);
-
+router.get('/obtener_num_comercios_grupo_rfm', trx_controller.obtener_num_comercios_grupo_rfm);
+router.get('/obtener_promedio_trx_n_periodo_por_comercio', trx_controller.obtener_promedio_trx_n_periodo_por_comercio);
+router.get('/obtener_informacion_por_locacion', trx_controller.obtener_informacion_por_locacion);
 module.exports = router;
