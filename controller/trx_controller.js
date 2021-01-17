@@ -19,6 +19,10 @@ exports.obtener_promedio_trx_n_periodo=function(req, res, next){
     db_trx.obtener_promedio_trx_n_periodo(req, res, next, util_controller.response_json);
 }
 
+exports.obtener_suma_trx_n_periodo=function(req, res, next){
+    db_trx.obtener_suma_trx_n_periodo(req, res, next, util_controller.response_json);
+}
+
 exports.obtener_n_trx_n_periodo=function(req, res, next){
     db_trx.obtener_n_trx_n_periodo(req, res, next, util_controller.response_json);
 }
