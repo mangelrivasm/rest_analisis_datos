@@ -169,10 +169,21 @@ exports.obtener_suma_trx_n_periodo = function(req, res, next, res_function){
       dbo.collection("transaccion_log").aggregate([
         {
           $match: querytrx,
+
+        },
+        {
+          $project : {
+            fecha : {$substr: ['$fecha_trx', 0, 6]},
+            prom_trx: 1,
+            producto : 1,
+            monto : 1
+
+          }
         }, 
         {
           $group: {
-            _id: {$substr: ['$fecha_trx', 0, 6] , "producto":"$producto"} , 
+            //_id: {$substr: ['$fecha_trx', 0, 6]}, 
+            _id: {"fecha_trx":"$fecha", "producto":"$producto"}, 
             "prom_trx":{$sum: "$monto"},
             
           }
@@ -192,12 +203,21 @@ exports.obtener_suma_trx_n_periodo = function(req, res, next, res_function){
       dbo.collection("transaccion_log").aggregate([
         {
           $match: querytrx,
+        },
+        {
+          $project : {
+            fecha : {$substr: ['$fecha_trx', 0, 4]},
+            prom_trx: 1,
+            producto : 1,
+            monto : 1
+          }
         }, 
         {
           $group: {
-            _id: {$substr: ['$fecha_trx', 0, 4], "producto":"$producto"} , 
+            //_id: {$substr: ['$fecha_trx', 0, 4]}, 
+            _id: {"fecha_trx":"$fecha", "producto":"$producto"}, 
             "prom_trx":{$sum: "$monto"},
-            //"MonthValue": { "$first": "$DueDateMonth" }
+            
           }
         }, 
         {
