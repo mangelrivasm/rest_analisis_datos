@@ -24,7 +24,7 @@ exports.obtener_comercios_por_locacion = function(req, res, next, res_function){
     let querycomercio={"provincia": new RegExp('^' + provincia.toUpperCase()), 
                        "ciudad": new RegExp('^' + ciudad.toUpperCase()), 
                        "barrio": new RegExp('^' + capitalizeWords(barrio)),
-                       "codigo_merchant": new RegExp('^' + comercio)};
+                       "id": parseInt(comercio)};
     dbo.collection("comercio").find(querycomercio).toArray(function(err2, resulttrx) {
           if (err2) console.log(err2);
           console.log("comerciooos", resulttrx);
@@ -322,6 +322,41 @@ exports.obtener_comercios_por_locacion = function(req, res, next, res_function){
             result2=getRFM(result2);
             result2=agregar_grupo_rfm(result2);
             result2=agregar_comercios_cero(result,result2);
+            res_function(null,result2, req, res, next);
+          });
+        }));
+    }
+
+    exports.obtener_grupo_rfm_con_actividad = function(req, res, next, res_function){
+      var dbo=mongo_connection.dbo;
+      let fecha_inicio = req.query.fecha_inicio? req.query.fecha_inicio: '';
+      let fecha_fin = req.query.fecha_fin? req.query.fecha_fin: '' ;
+      let provincia = req.query.provincia? req.query.provincia:'';
+      let comercio = req.query.comercio? req.query.comercio:'';
+      let ciudad = req.query.ciudad? req.query.ciudad:'';
+      let barrio = req.query.barrio? req.query.barrio:'';
+      let querycomercio={"provincia": new RegExp('^' + provincia.toUpperCase()), 
+                         "ciudad": new RegExp('^' + ciudad.toUpperCase()), 
+                         "barrio": new RegExp('^' + capitalizeWords(barrio)),
+                         "codigo_merchant": new RegExp('^' + comercio)};
+        
+      dbo.collection("comercio").distinct("id", querycomercio, 
+        (function(err, result) {
+          if (err) console.log(err);
+          console.log("RESULTTTT", result)
+          let querytrx= {"fecha_deposito": { $lt : fecha_fin, $gte: fecha_inicio}, "id_comercio": { $in: result}};
+
+          dbo.collection("pagocomercio").aggregate([{$match: querytrx}, 
+                                                    {$group: {_id: "$id_comercio", 
+                                                              "ultimo_deposito":{$max: "$fecha_deposito"},
+                                                              "numero_deposito":{$sum: 1},
+                                                              "avg_deposito":{$avg: "$valor"}}},
+                                                    {$sort: {_id: -1}}]).toArray(function(err2, resulttrx) {
+    
+            if (err2) console.log(err2);
+            var result2=getDays(resulttrx, fecha_fin);
+            result2=getRFM(result2);
+            result2=agregar_grupo_rfm(result2);
             res_function(null,result2, req, res, next);
           });
         }));
