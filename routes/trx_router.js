@@ -15,6 +15,7 @@ router.get('/obtener_promedio_trx_n_periodo', trx_controller.obtener_promedio_tr
 router.get('/obtener_suma_trx_n_periodo', trx_controller.obtener_suma_trx_n_periodo);
 router.get('/obtener_promedio_trx', trx_controller.obtener_promedio_trx);
 router.get('/obtener_n_trx_n_periodo', trx_controller.obtener_n_trx_n_periodo);
+router.get('/obtener_n_trx_n_periodos', trx_controller.obtener_n_trx_n_periodos);
 router.get('/obtener_promedio_pago_n_periodo', trx_controller.obtener_promedio_pago_n_periodo);
 router.get('/obtener_n_pago_n_periodo', trx_controller.obtener_n_pago_n_periodo);
 router.get('/obtener_comercios_por_locacion', trx_controller.obtener_comercios_por_locacion);
