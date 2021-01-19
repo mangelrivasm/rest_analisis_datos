@@ -81,6 +81,14 @@ exports.obtener_grupo_rfm_con_actividad=function(req, res, next){
     db_comercio.obtener_grupo_rfm_con_actividad(req, res, next, util_controller.response_json);
 }
 
+exports.obtener_grupo_rfm_por_locacion=function(req, res, next){
+    db_comercio.obtener_grupo_rfm_por_locacion(req, res, next, util_controller.response_json);
+}
+
+exports.obtener_grupo_rfm_por_locacion_sin_actividad=function(req, res, next){
+    db_comercio.obtener_grupo_rfm_por_locacion_sin_actividad(req, res, next, util_controller.response_json);
+}
+
 
 
 

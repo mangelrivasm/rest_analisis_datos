@@ -207,6 +207,7 @@ exports.obtener_comercios_por_locacion = function(req, res, next, res_function){
       return new_rfm_comercios;
     }
 
+
     function agregar_grupo_rfm_separado(rfm_comercios){
       for(var i=0; i<rfm_comercios.length; i++){
         var r=rfm_comercios[i].recency;
@@ -411,3 +412,170 @@ exports.obtener_comercios_por_locacion = function(req, res, next, res_function){
         }));
     }
 
+    exports.obtener_grupo_rfm_por_locacion = function(req, res, next, res_function){
+      var dbo=mongo_connection.dbo;
+      let fecha_inicio = req.query.fecha_inicio? req.query.fecha_inicio: '';
+      let fecha_fin = req.query.fecha_fin? req.query.fecha_fin: '' ;
+      let provincia = req.query.provincia? req.query.provincia:'';
+      let ciudad = req.query.ciudad? req.query.ciudad:'';
+      let barrio = req.query.barrio? req.query.barrio:'';
+      let querycomercio={"provincia": new RegExp('^' + provincia.toUpperCase()), 
+                         "ciudad": new RegExp('^' + ciudad.toUpperCase()), 
+                         "barrio": new RegExp('^' + capitalizeWords(barrio))};
+        
+      dbo.collection("comercio").distinct("id", querycomercio, 
+        (function(err, result) {
+          if (err) console.log(err);
+          console.log("RESULTTTT", result)
+          let querytrx= {"fecha_deposito": { $lt : fecha_fin, $gte: fecha_inicio}, "id_comercio": { $in: result}};
+
+          dbo.collection("pagocomercio").aggregate([{$match: querytrx}, 
+                                                    {$group: {_id: {idcomercio:"$id_comercio",
+                                                                    fecha_deposito: {$substr: ['$fecha_deposito', 0, 6]}}, 
+                                                              "ultimo_deposito":{$max: "$fecha_deposito"},
+                                                              "numero_deposito":{$sum: 1},
+                                                              "avg_deposito":{$avg: "$valor"}}},
+                                                    {$sort: {_id: -1}}]).toArray(function(err2, resulttrx) {
+    
+            if (err2) console.log(err2);
+            //console.log("RESULTTTT222", resulttrx)
+            let fechas_unicas_set = new Set();
+            var new_resultado_fechas=[];
+            for(var i=0; i<resulttrx.length; i++){
+                fechas_unicas_set.add(resulttrx[i]._id.fecha_deposito);
+                
+              }
+            var fechas_unicas=Array.from(fechas_unicas_set); 
+            console.log("fechas_unicas", fechas_unicas);
+            for(var k=0; k<fechas_unicas.length ; k++){
+              var resultado_por_fecha=[];
+              for(var j=0; j<resulttrx.length ; j++){
+                if(resulttrx[j]._id.fecha_deposito==fechas_unicas[k]){
+                  resultado_por_fecha.push(resulttrx[j]);
+                }               
+              }
+              console.log("resultados por fecha", resultado_por_fecha);
+              resultado_por_fecha=getDays(resultado_por_fecha, fecha_fin);
+              resultado_por_fecha=getRFM(resultado_por_fecha);
+              resultado_por_fecha=agregar_grupo_rfm(resultado_por_fecha);
+              console.log("*******************************************************************************");
+              console.log("RESULTADO POR FECHA", resultado_por_fecha);
+              let n_trx=resultado_por_fecha.length;
+              let dictionary_rfm= {"CAMPEON":0,
+                                  "LEAL":0,
+                                  "LEAL EN POTENCIA":0,
+                                  "NUEVO":0,
+                                  "PROMETEDOR":0,
+                                  "NECESITA ATENCION":0,
+                                  "POR DORMIRSE":0,
+                                  "EN RIESGO":0,
+                                  "NO PODEMOS PERDERLO":0,
+                                  "DORMIDO":0,
+                                  "PERDIDO":0,
+                                  "NO ACTIVIDAD":0};
+              for(var h=0; h<resultado_por_fecha.length; h++){
+                if(resultado_por_fecha[h].grupo_rfm in dictionary_rfm){
+                  dictionary_rfm[resultado_por_fecha[h].grupo_rfm]++;
+                }
+                else{
+                  dictionary_rfm[resultado_por_fecha[h].grupo_rfm]=1;
+                }
+              }
+              console.log("despues de resultado por fecha", dictionary_rfm);
+              for (var key in dictionary_rfm){
+                dictionary_rfm[key]=((dictionary_rfm[key]/n_trx)*100).toFixed(2);
+              }
+
+              dictionary_rfm["fecha"]=fechas_unicas[k];
+              
+              new_resultado_fechas.push(dictionary_rfm);
+            }
+            
+            res_function(null,new_resultado_fechas, req, res, next);
+          });
+        }));
+    }
+
+    exports.obtener_grupo_rfm_por_locacion_sin_actividad = function(req, res, next, res_function){
+      var dbo=mongo_connection.dbo;
+      let fecha_inicio = req.query.fecha_inicio? req.query.fecha_inicio: '';
+      let fecha_fin = req.query.fecha_fin? req.query.fecha_fin: '' ;
+      let provincia = req.query.provincia? req.query.provincia:'';
+      let ciudad = req.query.ciudad? req.query.ciudad:'';
+      let barrio = req.query.barrio? req.query.barrio:'';
+      let querycomercio={"provincia": new RegExp('^' + provincia.toUpperCase()), 
+                         "ciudad": new RegExp('^' + ciudad.toUpperCase()), 
+                         "barrio": new RegExp('^' + capitalizeWords(barrio))};
+        
+      dbo.collection("comercio").distinct("id", querycomercio, 
+        (function(err, result) {
+          if (err) console.log(err);
+          console.log("RESULTTTT", result)
+          let querytrx= {"fecha_deposito": { $lt : fecha_fin, $gte: fecha_inicio}, "id_comercio": { $in: result}};
+
+          dbo.collection("pagocomercio").aggregate([{$match: querytrx}, 
+                                                    {$group: {_id: {idcomercio:"$id_comercio",
+                                                                    fecha_deposito: {$substr: ['$fecha_deposito', 0, 6]}}, 
+                                                              "ultimo_deposito":{$max: "$fecha_deposito"},
+                                                              "numero_deposito":{$sum: 1},
+                                                              "avg_deposito":{$avg: "$valor"}}},
+                                                    {$sort: {_id: -1}}]).toArray(function(err2, resulttrx) {
+    
+            if (err2) console.log(err2);
+            //console.log("RESULTTTT222", resulttrx)
+            let fechas_unicas_set = new Set();
+            var new_resultado_fechas=[];
+            for(var i=0; i<resulttrx.length; i++){
+                fechas_unicas_set.add(resulttrx[i]._id.fecha_deposito);
+                
+              }
+            var fechas_unicas=Array.from(fechas_unicas_set); 
+            console.log("fechas_unicas", fechas_unicas);
+            for(var k=0; k<fechas_unicas.length ; k++){
+              var resultado_por_fecha=[];
+              for(var j=0; j<resulttrx.length ; j++){
+                if(resulttrx[j]._id.fecha_deposito==fechas_unicas[k]){
+                  resultado_por_fecha.push(resulttrx[j]);
+                }               
+              }
+              console.log("resultados por fecha", resultado_por_fecha);
+              resultado_por_fecha=getDays(resultado_por_fecha, fecha_fin);
+              resultado_por_fecha=getRFM(resultado_por_fecha);
+              resultado_por_fecha=agregar_grupo_rfm(resultado_por_fecha);
+              resultado_por_fecha=agregar_comercios_cero(result,resultado_por_fecha);
+              console.log("*******************************************************************************");
+              console.log("RESULTADO POR FECHA", resultado_por_fecha);
+              let n_trx=resultado_por_fecha.length;
+              let dictionary_rfm= {"CAMPEON":0,
+                                  "LEAL":0,
+                                  "LEAL EN POTENCIA":0,
+                                  "NUEVO":0,
+                                  "PROMETEDOR":0,
+                                  "NECESITA ATENCION":0,
+                                  "POR DORMIRSE":0,
+                                  "EN RIESGO":0,
+                                  "NO PODEMOS PERDERLO":0,
+                                  "DORMIDO":0,
+                                  "PERDIDO":0,
+                                  "NO ACTIVIDAD":0};
+              for(var h=0; h<resultado_por_fecha.length; h++){
+                if(resultado_por_fecha[h].grupo_rfm in dictionary_rfm){
+                  dictionary_rfm[resultado_por_fecha[h].grupo_rfm]++;
+                }
+                else{
+                  dictionary_rfm[resultado_por_fecha[h].grupo_rfm]=1;
+                }
+              }
+              console.log("despues de resultado por fecha", dictionary_rfm);
+              for (var key in dictionary_rfm){
+                dictionary_rfm[key]=((dictionary_rfm[key]/n_trx)*100).toFixed(2);
+              }
+              dictionary_rfm["fecha"]=fechas_unicas[k];
+              
+              new_resultado_fechas.push(dictionary_rfm);
+            }
+            
+            res_function(null,new_resultado_fechas, req, res, next);
+          });
+        }));
+    }
