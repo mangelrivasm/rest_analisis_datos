@@ -138,7 +138,8 @@ exports.obtener_n_trx_n_periodos = function(req, res, next, res_function){
   dbo.collection("comercio").distinct("codigo_merchant", querycomercio, 
     (function(err, result) {
       if (err) console.log(err);
-      let querytrx= {"fecha_trx": { $lt : fecha_fin, $gte: fecha_inicio}, "idcomercio": { $in: result}, "producto":new RegExp('^' + producto)};
+      //let querytrx= {"fecha_trx": { $lt : fecha_fin, $gte: fecha_inicio}, "idcomercio": { $in: result}, "producto":new RegExp('^' + producto)};
+      let querytrx= {"fecha_trx": { $lt : fecha_fin, $gte: fecha_inicio}, "idcomercio": { $in: result}};
       
       
       if(periodo === "DIARIO")
@@ -149,7 +150,7 @@ exports.obtener_n_trx_n_periodos = function(req, res, next, res_function){
           },
           {
             $group: {
-              _id: "$fecha_trx", 
+              _id: {"fecha_trx":"$fecha_trx", "producto":"$producto"}, 
               "n_trx":{$sum: 1}
             }
           }, 
@@ -170,13 +171,14 @@ exports.obtener_n_trx_n_periodos = function(req, res, next, res_function){
           {
             $project : {
               fecha : {$substr: ['$fecha_trx', 0, 6]},
-              n_trx: 1
+              n_trx: 1,
+              producto: 1
   
             }
           },
           {
             $group: {
-              _id: {"fecha_trx":"$fecha"}, 
+              _id: {"fecha_trx":"$fecha", "producto":"$producto"}, 
               "n_trx":{$sum: 1}
             }
           }, 
@@ -197,13 +199,14 @@ exports.obtener_n_trx_n_periodos = function(req, res, next, res_function){
           {
             $project : {
               fecha : {$substr: ['$fecha_trx', 0, 4]},
-              n_trx: 1
+              n_trx: 1,
+              producto: 1
   
             }
           },
           {
             $group: {
-              _id: {"fecha_trx":"$fecha"}, 
+              _id: {"fecha_trx":"$fecha", "producto":"$producto"},
               "n_trx":{$sum: 1}
             }
           }, 
