@@ -24,7 +24,6 @@ router.get('/obtener_rfm', trx_controller.obtener_rfm);
 router.get('/obtener_grupo_rfm', trx_controller.obtener_grupo_rfm);
 router.get('/obtener_num_comercios_grupo_rfm', trx_controller.obtener_num_comercios_grupo_rfm);
 router.get('/obtener_promedio_trx_n_periodo_por_comercio', trx_controller.obtener_promedio_trx_n_periodo_por_comercio);
-router.get('/obtener_informacion_por_locacion', trx_controller.obtener_informacion_por_locacion);
 router.get('/obtener_grupo_rfm_con_actividad', trx_controller.obtener_grupo_rfm_con_actividad);
 router.get('/obtener_grupo_rfm_por_locacion', trx_controller.obtener_grupo_rfm_por_locacion);
 router.get('/obtener_grupo_rfm_por_locacion_sin_actividad', trx_controller.obtener_grupo_rfm_por_locacion_sin_actividad);

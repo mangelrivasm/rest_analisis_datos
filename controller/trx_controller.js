@@ -36,10 +36,6 @@ exports.obtener_promedio_trx_n_periodo_por_comercio=function(req, res, next){
     db_trx.obtener_promedio_trx_n_periodo_por_comercio(req, res, next, util_controller.response_json);
 }
 
-exports.obtener_informacion_por_locacion=function(req, res, next){
-    db_trx.obtener_informacion_por_locacion(req, res, next, util_controller.response_json);
-}
-
 exports.obtener_pagos=function(req, res, next){
     db_pago.obtener_pagos(req, res, next, util_controller.response_json);
 }
