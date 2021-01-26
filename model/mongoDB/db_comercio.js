@@ -24,7 +24,8 @@ exports.obtener_comercios_por_locacion = function(req, res, next, res_function){
     let querycomercio={"provincia": new RegExp('^' + provincia.toUpperCase()), 
                        "ciudad": new RegExp('^' + ciudad.toUpperCase()), 
                        "barrio": new RegExp('^' + capitalizeWords(barrio)),
-                       "id": parseInt(comercio)};
+                      // "id": new RegExp('^'+ parseInt(comercio))
+                    };
     dbo.collection("comercio").find(querycomercio).toArray(function(err2, resulttrx) {
           if (err2) console.log(err2);
           console.log("comerciooos", resulttrx);
@@ -276,6 +277,33 @@ exports.obtener_comercios_por_locacion = function(req, res, next, res_function){
       for(var i=0; i<rfm_comercios.length; i++)
         lista_comercios_existentes.push(rfm_comercios[i]._id);
       let difference = comercios.filter(x => !lista_comercios_existentes.includes(x));
+      console.log("difference lenght", difference.length);
+      for(var c=0; c<difference.length; c++){
+        rfm_comercios.push({"_id": difference[c], 
+                            "ultimo_deposito": "",
+                            "numero_deposito": 0,
+                            "avg_deposito":0,
+                            "days":0,
+                            "monetary":0,
+                            "frequency":0,
+                            "recency":0,
+                            "grupo_rfm": "NO ACTIVIDAD"
+                          })
+      }
+      return rfm_comercios;
+    }
+
+    function agregar_comercios_cero_sin_actividad(comercios, rfm_comercios){
+      var lista_comercios_existentes=[];
+      for(var i=0; i<rfm_comercios.length; i++)
+        lista_comercios_existentes.push(rfm_comercios[i]._id.idcomercio);
+      let difference = comercios.filter(x => !lista_comercios_existentes.includes(x));
+
+     console.log("difference lenght", difference.length);
+      console.log("comercios existentes lenght", lista_comercios_existentes.length);
+      console.log("comercios existentes", lista_comercios_existentes)
+
+      
       for(var c=0; c<difference.length; c++){
         rfm_comercios.push({"_id": difference[c], 
                             "ultimo_deposito": "",
@@ -308,7 +336,7 @@ exports.obtener_comercios_por_locacion = function(req, res, next, res_function){
       dbo.collection("comercio").distinct("id", querycomercio, 
         (function(err, result) {
           if (err) console.log(err);
-          console.log("RESULTTTT", result)
+          //console.log("RESULTTTT", result)
           let querytrx= {"fecha_deposito": { $lt : fecha_fin, $gte: fecha_inicio}, "id_comercio": { $in: result}};
 
           dbo.collection("pagocomercio").aggregate([{$match: querytrx}, 
@@ -510,7 +538,7 @@ exports.obtener_comercios_por_locacion = function(req, res, next, res_function){
       dbo.collection("comercio").distinct("id", querycomercio, 
         (function(err, result) {
           if (err) console.log(err);
-          console.log("RESULTTTT", result)
+         //console.log("RESULTTTT", result)
           let querytrx= {"fecha_deposito": { $lt : fecha_fin, $gte: fecha_inicio}, "id_comercio": { $in: result}};
 
           dbo.collection("pagocomercio").aggregate([{$match: querytrx}, 
@@ -530,7 +558,7 @@ exports.obtener_comercios_por_locacion = function(req, res, next, res_function){
                 
               }
             var fechas_unicas=Array.from(fechas_unicas_set); 
-            console.log("fechas_unicas", fechas_unicas);
+            //console.log("fechas_unicas", fechas_unicas);
             for(var k=0; k<fechas_unicas.length ; k++){
               var resultado_por_fecha=[];
               for(var j=0; j<resulttrx.length ; j++){
@@ -538,13 +566,13 @@ exports.obtener_comercios_por_locacion = function(req, res, next, res_function){
                   resultado_por_fecha.push(resulttrx[j]);
                 }               
               }
-              console.log("resultados por fecha", resultado_por_fecha);
+              //console.log("resultados por fecha", resultado_por_fecha);
               resultado_por_fecha=getDays(resultado_por_fecha, fecha_fin);
               resultado_por_fecha=getRFM(resultado_por_fecha);
               resultado_por_fecha=agregar_grupo_rfm(resultado_por_fecha);
-              resultado_por_fecha=agregar_comercios_cero(result,resultado_por_fecha);
+              resultado_por_fecha=agregar_comercios_cero_sin_actividad(result,resultado_por_fecha);
               console.log("*******************************************************************************");
-              console.log("RESULTADO POR FECHA", resultado_por_fecha);
+              //console.log("RESULTADO POR FECHA", resultado_por_fecha);
               let n_trx=resultado_por_fecha.length;
               let dictionary_rfm= {"CAMPEON":0,
                                   "LEAL":0,
@@ -566,10 +594,8 @@ exports.obtener_comercios_por_locacion = function(req, res, next, res_function){
                   dictionary_rfm[resultado_por_fecha[h].grupo_rfm]=1;
                 }
               }
-              console.log("despues de resultado por fecha", dictionary_rfm);
-              for (var key in dictionary_rfm){
-                dictionary_rfm[key]=((dictionary_rfm[key]/n_trx)*100).toFixed(2);
-              }
+              //console.log("despues de resultado por fecha", dictionary_rfm);
+              
               dictionary_rfm["fecha"]=fechas_unicas[k];
               
               new_resultado_fechas.push(dictionary_rfm);

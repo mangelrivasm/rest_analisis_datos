@@ -739,3 +739,4 @@ exports.obtener_cantidad_trx_x_periodo_por_locacion = function(req, res, next, r
   }
 }
 
+    
