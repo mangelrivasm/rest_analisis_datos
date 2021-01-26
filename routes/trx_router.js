@@ -32,6 +32,7 @@ router.get('/obtener_cantidad_trx_x_periodo_por_locacion', trx_controller.obtene
 router.get('/obtener_grupo_rfm_con_actividad', trx_controller.obtener_grupo_rfm_con_actividad);
 router.get('/obtener_grupo_rfm_por_locacion', trx_controller.obtener_grupo_rfm_por_locacion);
 router.get('/obtener_grupo_rfm_por_locacion_sin_actividad', trx_controller.obtener_grupo_rfm_por_locacion_sin_actividad);
+router.get('/obtener_grupo_rfm_por_nivel_geografico', trx_controller.obtener_grupo_rfm_por_nivel_geografico);
 
 
 
