@@ -105,6 +105,12 @@ exports.obtener_grupo_rfm_por_locacion_sin_actividad=function(req, res, next){
     db_comercio.obtener_grupo_rfm_por_locacion_sin_actividad(req, res, next, util_controller.response_json);
 }
 
+exports.obtener_grupo_rfm_por_nivel_geografico=function(req, res, next){
+    db_comercio.obtener_grupo_rfm_por_nivel_geografico(req, res, next, util_controller.response_json);
+}
+
+
+
 
 
 

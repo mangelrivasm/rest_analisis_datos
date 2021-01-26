@@ -605,3 +605,79 @@ exports.obtener_comercios_por_locacion = function(req, res, next, res_function){
           });
         }));
     }
+
+
+    exports.obtener_grupo_rfm_por_nivel_geografico = function(req, res, next, res_function){
+      var dbo=mongo_connection.dbo;
+      let fecha_inicio = req.query.fecha_inicio? req.query.fecha_inicio: '';
+      let fecha_fin = req.query.fecha_fin? req.query.fecha_fin: '' ;
+      let nivel=req.query.nivel? req.query.nivel: 'provincia' ;
+      nivel=nivel.toLowerCase(); 
+
+      let querytrx= {"fecha_deposito": { $lt : fecha_fin, $gte: fecha_inicio}, "provincia":{$ne:""}};
+      dbo.collection("pagocomercio").aggregate([{$match: querytrx}, 
+                                                {$group: {_id: {idcomercio:"$id_comercio",
+                                                                provincia:"$provincia",
+                                                                ciudad:"$ciudad",
+                                                                barrio:"$barrio",
+                                                                fecha_deposito: {$substr: ['$fecha_deposito', 0, 6]}}, 
+                                                          "ultimo_deposito":{$max: "$fecha_deposito"},
+                                                          "numero_deposito":{$sum: 1},
+                                                          "avg_deposito":{$avg: "$valor"}}},
+                                                {$sort: {_id: -1}}]).toArray(function(err2, resulttrx) {
+    
+      if (err2) console.log(err2);
+      let locacion_set = new Set();
+      for(var i=0; i<resulttrx.length; i++){
+        console.log("niveel", resulttrx[i]._id[nivel]);
+        locacion_set.add(resulttrx[i]._id[nivel]);          
+       }
+      var locaciones_unicas=Array.from(locacion_set); 
+      var new_locaciones=[]
+      //console.log("fechas_unicas", fechas_unicas);
+      for(var k=0; k<locaciones_unicas.length ; k++){
+        var resultado_por_locacion=[];
+        for(var j=0; j<resulttrx.length ; j++){
+          if(resulttrx[j]._id[nivel]==locaciones_unicas[k]){
+            resultado_por_locacion.push(resulttrx[j]);
+            }               
+          }
+        resultado_por_locacion=getDays(resultado_por_locacion, fecha_fin);
+        resultado_por_locacion=getRFM(resultado_por_locacion);
+        resultado_por_locacion=agregar_grupo_rfm(resultado_por_locacion);
+        console.log("*******************************************************************************");
+
+        let dictionary_rfm= {"CAMPEON":0,
+                                  "LEAL":0,
+                                  "LEAL EN POTENCIA":0,
+                                  "NUEVO":0,
+                                  "PROMETEDOR":0,
+                                  "NECESITA ATENCION":0,
+                                  "POR DORMIRSE":0,
+                                  "EN RIESGO":0,
+                                  "NO PODEMOS PERDERLO":0,
+                                  "DORMIDO":0,
+                                  "PERDIDO":0,
+                                  "NO ACTIVIDAD":0};
+        console.log("resultado_por_locacionNNN", resultado_por_locacion);
+        var comercios=0;
+        for(var h=0; h<resultado_por_locacion.length; h++){
+          comercios++;
+          if(resultado_por_locacion[h].grupo_rfm in dictionary_rfm){
+            dictionary_rfm[resultado_por_locacion[h].grupo_rfm]++;
+          }
+          else{
+            dictionary_rfm[resultado_por_locacion[h].grupo_rfm]=1;
+          }
+        }
+        dictionary_rfm["activos"]=comercios;
+        dictionary_rfm[nivel]=locaciones_unicas[k];
+        new_locaciones.push(dictionary_rfm);
+      }
+        res_function(null,new_locaciones, req, res, next);
+          });
+
+    }
+
+
+    
