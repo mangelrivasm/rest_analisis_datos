@@ -40,6 +40,22 @@ exports.obtener_informacion_por_locacion=function(req, res, next){
     db_trx.obtener_informacion_por_locacion(req, res, next, util_controller.response_json);
 }
 
+exports.obtener_total_monetario_trx_n_periodo_x_lugar=function(req, res, next){
+    db_trx.obtener_total_monetario_trx_n_periodo_x_lugar(req, res, next, util_controller.response_json);
+}
+
+exports.obtener_total_trx_n_periodo_x_lugar=function(req, res, next){
+    db_trx.obtener_total_trx_n_periodo_x_lugar(req, res, next, util_controller.response_json);
+}
+
+exports.obtener_suma_trx_n_periodo_x_lugar=function(req, res, next){
+    db_trx.obtener_suma_trx_n_periodo_x_lugar(req, res, next, util_controller.response_json);
+}
+
+exports.obtener_cantidad_trx_x_periodo_por_locacion=function(req, res, next){
+    db_trx.obtener_cantidad_trx_x_periodo_por_locacion(req, res, next, util_controller.response_json);
+}
+
 exports.obtener_pagos=function(req, res, next){
     db_pago.obtener_pagos(req, res, next, util_controller.response_json);
 }
