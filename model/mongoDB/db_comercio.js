@@ -24,7 +24,7 @@ exports.obtener_comercios_por_locacion = function(req, res, next, res_function){
     let querycomercio={"provincia": new RegExp('^' + provincia.toUpperCase()), 
                        "ciudad": new RegExp('^' + ciudad.toUpperCase()), 
                        "barrio": new RegExp('^' + capitalizeWords(barrio)),
-                      // "id": new RegExp('^'+ parseInt(comercio))
+                       "id": parseInt(comercio)
                     };
     dbo.collection("comercio").find(querycomercio).toArray(function(err2, resulttrx) {
           if (err2) console.log(err2);

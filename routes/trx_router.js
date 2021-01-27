@@ -33,7 +33,8 @@ router.get('/obtener_grupo_rfm_con_actividad', trx_controller.obtener_grupo_rfm_
 router.get('/obtener_grupo_rfm_por_locacion', trx_controller.obtener_grupo_rfm_por_locacion);
 router.get('/obtener_grupo_rfm_por_locacion_sin_actividad', trx_controller.obtener_grupo_rfm_por_locacion_sin_actividad);
 router.get('/obtener_grupo_rfm_por_nivel_geografico', trx_controller.obtener_grupo_rfm_por_nivel_geografico);
-
+router.get('/obtener_ejecutivos', trx_controller.obtener_ejecutivos);
+router.get('/obtener_visitas_ejecutivos', trx_controller.obtener_visitas_ejecutivos);
 
 
 module.exports = router;

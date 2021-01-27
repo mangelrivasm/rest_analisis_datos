@@ -2,6 +2,7 @@ var util_controller = require('./util_controller');
 var db_trx = require('../model/mongoDB/db_trx');
 var db_comercio= require('../model/mongoDB/db_comercio');
 var db_pago= require('../model/mongoDB/db_pago');
+var db_ejecutivo= require('../model/mongoDB/db_ejecutivo');
 
 exports.obtener_trx = function (req, res, next) {
     db_trx.obtener_trx(req, res, next,util_controller.response_json);
@@ -109,6 +110,13 @@ exports.obtener_grupo_rfm_por_nivel_geografico=function(req, res, next){
     db_comercio.obtener_grupo_rfm_por_nivel_geografico(req, res, next, util_controller.response_json);
 }
 
+exports.obtener_ejecutivos=function(req, res, next){
+    db_ejecutivo.obtener_ejecutivos(req, res, next, util_controller.response_json);
+}
+
+exports.obtener_visitas_ejecutivos=function(req, res, next){
+    db_ejecutivo.obtener_visitas_ejecutivos(req, res, next, util_controller.response_json);
+}
 
 
 
