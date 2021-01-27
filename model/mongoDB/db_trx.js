@@ -569,7 +569,8 @@ exports.obtener_suma_trx_n_periodo_x_lugar = function(req, res, next, res_functi
           _id: "$provincia",
           SUMA:{
             $sum: "$monto"
-          }
+          },
+          "n_trx":{$sum: 1}
           //  "n_trx":{$sum: 1}
         }
       }, 
@@ -598,7 +599,8 @@ exports.obtener_suma_trx_n_periodo_x_lugar = function(req, res, next, res_functi
           _id: "$ciudad",
           SUMA:{
             $sum: "$monto"
-          }
+          },
+          "n_trx":{$sum: 1}
           //  "n_trx":{$sum: 1}
         }
       }, 
@@ -627,7 +629,8 @@ exports.obtener_suma_trx_n_periodo_x_lugar = function(req, res, next, res_functi
           _id: "$barrio",
           SUMA:{
             $sum: "$monto"
-          }
+          },
+          "n_trx":{$sum: 1}
           //  "n_trx":{$sum: 1}
         }
       }, 
