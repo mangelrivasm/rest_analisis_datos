@@ -35,6 +35,11 @@ router.get('/obtener_grupo_rfm_por_locacion_sin_actividad', trx_controller.obten
 router.get('/obtener_grupo_rfm_por_nivel_geografico', trx_controller.obtener_grupo_rfm_por_nivel_geografico);
 router.get('/obtener_ejecutivos', trx_controller.obtener_ejecutivos);
 router.get('/obtener_visitas_ejecutivos', trx_controller.obtener_visitas_ejecutivos);
+router.get('/obtener_valor_total_maximo', trx_controller.obtener_valor_total_maximo);
+router.get('/obtener_cantidad_maxima', trx_controller.obtener_cantidad_maxima);
+router.get('/obtener_informacion_comercios', trx_controller.obtener_informacion_comercios);
+router.get('/obtener_suma_trx_por_comercio', trx_controller.obtener_suma_trx_por_comercio);
+
 
 
 module.exports = router;

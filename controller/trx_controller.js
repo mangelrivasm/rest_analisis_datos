@@ -57,6 +57,18 @@ exports.obtener_cantidad_trx_x_periodo_por_locacion=function(req, res, next){
     db_trx.obtener_cantidad_trx_x_periodo_por_locacion(req, res, next, util_controller.response_json);
 }
 
+exports.obtener_valor_total_maximo=function(req, res, next){
+    db_trx.obtener_valor_total_maximo(req, res, next, util_controller.response_json);
+}
+
+exports.obtener_cantidad_maxima=function(req, res, next){
+    db_trx.obtener_cantidad_maxima(req, res, next, util_controller.response_json);
+}
+
+exports.obtener_suma_trx_por_comercio=function(req, res, next){
+    db_trx.obtener_suma_trx_por_comercio(req, res, next, util_controller.response_json);
+}
+
 exports.obtener_pagos=function(req, res, next){
     db_pago.obtener_pagos(req, res, next, util_controller.response_json);
 }
@@ -108,6 +120,10 @@ exports.obtener_grupo_rfm_por_locacion_sin_actividad=function(req, res, next){
 
 exports.obtener_grupo_rfm_por_nivel_geografico=function(req, res, next){
     db_comercio.obtener_grupo_rfm_por_nivel_geografico(req, res, next, util_controller.response_json);
+}
+
+exports.obtener_informacion_comercios=function(req, res, next){
+    db_comercio.obtener_informacion_comercios(req, res, next, util_controller.response_json);
 }
 
 exports.obtener_ejecutivos=function(req, res, next){

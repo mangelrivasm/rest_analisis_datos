@@ -32,6 +32,22 @@ exports.obtener_comercios_por_locacion = function(req, res, next, res_function){
           res_function(null,resulttrx, req, res, next);
         });
       };
+
+  exports.obtener_informacion_comercios = function(req, res, next, res_function){
+        var dbo=mongo_connection.dbo;
+        let provincia = req.query.provincia? req.query.provincia:'';
+        let comercio = req.query.comercio? req.query.comercio:'';
+        let ciudad = req.query.ciudad? req.query.ciudad:'';
+        let barrio = req.query.barrio? req.query.barrio:'';
+        let querycomercio={"provincia": new RegExp('^' + provincia.toUpperCase()), 
+                           "ciudad": new RegExp('^' + ciudad.toUpperCase()), 
+                           "barrio": new RegExp('^' + capitalizeWords(barrio)),
+                        };
+        dbo.collection("comercio").find(querycomercio).toArray(function(err2, resulttrx) {
+              if (err2) console.log(err2);
+              res_function(null,resulttrx, req, res, next);
+            });
+          };
     
   exports.obtener_comercios_por_fecha_creacion = function(req, res, next, res_function){
         var dbo=mongo_connection.dbo;
