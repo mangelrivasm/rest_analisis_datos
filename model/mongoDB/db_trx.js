@@ -544,9 +544,10 @@ exports.obtener_suma_trx_n_periodo_x_lugar = function(req, res, next, res_functi
   let fecha_inicio = req.query.fecha_inicio? req.query.fecha_inicio: '';
   let fecha_fin = req.query.fecha_fin? req.query.fecha_fin: '' ;
   let granularidad = req.query.granularidad? req.query.granularidad: '' ;
+  let producto = req.query.producto? req.query.producto: '' ;
 
 
-  let querytrx= {"fecha_trx": { $lt : fecha_fin, $gte: fecha_inicio}};
+  let querytrx= {"fecha_trx": { $lt : fecha_fin, $gte: fecha_inicio}, "producto":new RegExp('^' + producto)};
 
 
   if(granularidad === "PROVINCIA")
