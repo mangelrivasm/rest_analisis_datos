@@ -645,7 +645,6 @@ exports.obtener_comercios_por_locacion = function(req, res, next, res_function){
       if (err2) console.log(err2);
       let locacion_set = new Set();
       for(var i=0; i<resulttrx.length; i++){
-        console.log("niveel", resulttrx[i]._id[nivel]);
         locacion_set.add(resulttrx[i]._id[nivel]);          
        }
       var locaciones_unicas=Array.from(locacion_set); 
