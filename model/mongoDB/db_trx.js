@@ -23,18 +23,16 @@ exports.obtener_trx_n_periodo = function(req, res, next, res_function){
   let ciudad = req.query.ciudad? req.query.ciudad:'';
   let barrio = req.query.barrio? req.query.barrio:'';
   let producto = req.query.producto? req.query.producto:'';
-  let querycomercio={"provincia": new RegExp('^' + provincia.toUpperCase()), 
+  
+  let querytrx= {"fecha_trx": { $lt : fecha_fin, $gte: fecha_inicio}, 
+                     "producto":new RegExp('^' + producto),
+                     "provincia": new RegExp('^' + provincia.toUpperCase()), 
                      "ciudad": new RegExp('^' + ciudad.toUpperCase()), 
                      "barrio": new RegExp('^' + capitalizeWords(barrio))};
-  dbo.collection("comercio").distinct("codigo_merchant", querycomercio, 
-    (function(err, result) {
-      if (err) console.log(err);
-      let querytrx= {"fecha_trx": { $lt : fecha_fin, $gte: fecha_inicio}, "idcomercio": { $in: result}, "producto":new RegExp('^' + producto)};
-      dbo.collection("transaccion_log").find(querytrx).toArray(function(err2, resulttrx) {
+  dbo.collection("transaccion_log").find(querytrx).toArray(function(err2, resulttrx) {
         if (err2) console.log(err2);
         res_function(null,resulttrx, req, res, next);
       });
-    }));
 }
 
 
@@ -47,23 +45,21 @@ exports.obtener_promedio_trx_n_periodo = function(req, res, next, res_function){
   let ciudad = req.query.ciudad? req.query.ciudad:'';
   let barrio = req.query.barrio? req.query.barrio:'';
   let producto = req.query.producto? req.query.producto:'';
-  let querycomercio={"provincia": new RegExp('^' + provincia.toUpperCase()), 
+  
+  let querytrx= {"fecha_trx": { $lt : fecha_fin, $gte: fecha_inicio}, 
+                     "producto":new RegExp('^' + producto),
+                     "provincia": new RegExp('^' + provincia.toUpperCase()), 
                      "ciudad": new RegExp('^' + ciudad.toUpperCase()), 
                      "barrio": new RegExp('^' + capitalizeWords(barrio)),
-                     "codigo_merchant": new RegExp('^' + comercio)};
-  dbo.collection("comercio").distinct("codigo_merchant", querycomercio, 
-    (function(err, result) {
-      console.log("result comereerr", result)
-      if (err) console.log(err);
-      let querytrx= {"fecha_trx": { $lt : fecha_fin, $gte: fecha_inicio}, "idcomercio": { $in: result}, "producto":new RegExp('^' + producto)};
-      dbo.collection("transaccion_log").aggregate([{$match: querytrx}, 
+                     "idcomercio": new RegExp('^' + comercio)};
+
+  dbo.collection("transaccion_log").aggregate([{$match: querytrx}, 
                                                    {$group: {_id: "$fecha_trx", "prom_trx":{$avg: "$monto"}}}, 
                                                    {$sort: {_id: -1}}]).toArray(function(err2, resulttrx) {
 
         if (err2) console.log(err2);
         res_function(null,resulttrx, req, res, next);
       });
-    }));
 }
 
 exports.obtener_promedio_trx = function(req, res, next, res_function){
@@ -539,7 +535,7 @@ exports.obtener_total_monetario_trx_n_periodo_x_lugar = function(req, res, next,
     }));
 }
 
-exports.obtener_suma_trx_n_periodo_x_lugar = function(req, res, next, res_function){
+exports.obtener_suma_trx_n_periodo_x_lugar_before = function(req, res, next, res_function){
   var dbo=mongo_connection.dbo;
   let fecha_inicio = req.query.fecha_inicio? req.query.fecha_inicio: '';
   let fecha_fin = req.query.fecha_fin? req.query.fecha_fin: '' ;
@@ -650,6 +646,96 @@ exports.obtener_suma_trx_n_periodo_x_lugar = function(req, res, next, res_functi
     });
   }
 }
+
+
+exports.obtener_suma_trx_n_periodo_x_lugar = function(req, res, next, res_function){
+  var dbo=mongo_connection.dbo;
+  let fecha_inicio = req.query.fecha_inicio? req.query.fecha_inicio: '';
+  let fecha_fin = req.query.fecha_fin? req.query.fecha_fin: '' ;
+  let granularidad = req.query.granularidad? req.query.granularidad: '' ;
+  let producto = req.query.producto? req.query.producto: '' ;
+
+  let querytrx;
+
+  if(producto !== "TODOS")
+  {
+    querytrx= {"fecha": { $lt : fecha_fin, $gte: fecha_inicio}, "producto":new RegExp('^' + producto)};
+  }
+  else
+  {
+    querytrx= {"fecha": { $lt : fecha_fin, $gte: fecha_inicio}};
+  }
+
+  
+
+  if(granularidad === "PROVINCIA")
+  {
+    dbo.collection("transaccion_log_processed").aggregate([
+      {
+        $match: querytrx
+      },
+      {
+        $group: 
+        {
+          _id: "$provincia",
+          SUMA:{
+            $sum: "$total"
+          },
+          "n_trx":{$sum: "$num_trx"}
+        }
+      }
+    ]).toArray(function(err2, resulttrx) {
+  
+      if (err2) console.log(err2);
+      res_function(null,resulttrx, req, res, next);
+    });
+  }
+  else if(granularidad === "CIUDAD")
+  {
+    dbo.collection("transaccion_log_processed").aggregate([
+      {
+        $match: querytrx
+      },
+      {
+        $group: 
+        {
+          _id: "$ciudad",
+          SUMA:{
+            $sum: "$total"
+          },
+          "n_trx":{$sum: "$num_trx"}
+        }
+      }  
+    ]).toArray(function(err2, resulttrx) {
+  
+      if (err2) console.log(err2);
+      res_function(null,resulttrx, req, res, next);
+    });
+  }
+  else if(granularidad === "BARRIO")
+  {
+    dbo.collection("transaccion_log_processed").aggregate([
+      {
+        $match: querytrx
+      },
+      {
+        $group: 
+        {
+          _id: "$barrio",
+          SUMA:{
+            $sum: "$total"
+          },
+          "n_trx":{$sum: "$num_trx"}
+        }
+      }
+    ]).toArray(function(err2, resulttrx) {
+  
+      if (err2) console.log(err2);
+      res_function(null,resulttrx, req, res, next);
+    });
+  }
+}
+
 
 exports.obtener_cantidad_trx_x_periodo_por_locacion = function(req, res, next, res_function){
   var dbo=mongo_connection.dbo;

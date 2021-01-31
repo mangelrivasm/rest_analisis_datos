@@ -28,6 +28,7 @@ router.get('/obtener_informacion_por_locacion', trx_controller.obtener_informaci
 router.get('/obtener_total_monetario_trx_n_periodo_x_lugar', trx_controller.obtener_total_monetario_trx_n_periodo_x_lugar);
 router.get('/obtener_total_trx_n_periodo_x_lugar', trx_controller.obtener_total_trx_n_periodo_x_lugar);
 router.get('/obtener_suma_trx_n_periodo_x_lugar', trx_controller.obtener_suma_trx_n_periodo_x_lugar);
+router.get('/obtener_suma_trx_n_periodo_x_lugar_before', trx_controller.obtener_suma_trx_n_periodo_x_lugar_before);
 router.get('/obtener_cantidad_trx_x_periodo_por_locacion', trx_controller.obtener_cantidad_trx_x_periodo_por_locacion);
 router.get('/obtener_grupo_rfm_con_actividad', trx_controller.obtener_grupo_rfm_con_actividad);
 router.get('/obtener_grupo_rfm_por_locacion', trx_controller.obtener_grupo_rfm_por_locacion);

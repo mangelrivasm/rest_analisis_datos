@@ -69,6 +69,10 @@ exports.obtener_suma_trx_por_comercio=function(req, res, next){
     db_trx.obtener_suma_trx_por_comercio(req, res, next, util_controller.response_json);
 }
 
+exports.obtener_suma_trx_n_periodo_x_lugar_before=function(req, res, next){
+    db_trx.obtener_suma_trx_n_periodo_x_lugar_before(req, res, next, util_controller.response_json);
+}
+
 exports.obtener_pagos=function(req, res, next){
     db_pago.obtener_pagos(req, res, next, util_controller.response_json);
 }
