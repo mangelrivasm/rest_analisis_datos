@@ -101,18 +101,20 @@ exports.obtener_n_trx_n_periodo = function(req, res, next, res_function){
                      "ciudad": new RegExp('^' + ciudad.toUpperCase()), 
                      "barrio": new RegExp('^' + capitalizeWords(barrio)),
                      "codigo_merchant": new RegExp('^' + comercio)};
-  dbo.collection("comercio").distinct("codigo_merchant", querycomercio, 
-    (function(err, result) {
-      if (err) console.log(err);
-      let querytrx= {"fecha_trx": { $lt : fecha_fin, $gte: fecha_inicio}, "idcomercio": { $in: result}, "producto":new RegExp('^' + producto)};
-      dbo.collection("transaccion_log").aggregate([{$match: querytrx}, 
-                                                   {$group: {_id: "$fecha_trx", "n_trx":{$sum: 1}}}, 
+  let querytrx= {"fecha": { $lt : fecha_fin, $gte: fecha_inicio}, 
+                     "producto":new RegExp('^' + producto),
+                     "provincia": new RegExp('^' + provincia.toUpperCase()), 
+                     "ciudad": new RegExp('^' + ciudad.toUpperCase()), 
+                     "barrio": new RegExp('^' + capitalizeWords(barrio)),
+                     "idcomercio": new RegExp('^' + comercio)};
+
+  dbo.collection("transaccion_log_processed").aggregate([{$match: querytrx}, 
+                                                   {$group: {_id: "$fecha", "n_trx":{$sum: "$num_trx"}}}, 
                                                    {$sort: {_id: -1}}]).toArray(function(err2, resulttrx) {
 
         if (err2) console.log(err2);
         res_function(null,resulttrx, req, res, next);
       });
-    }));
 }
 
 exports.obtener_n_trx_n_periodos_before = function(req, res, next, res_function){
@@ -263,15 +265,16 @@ exports.obtener_n_trx_n_periodos = function(req, res, next, res_function){
           },
           {
             $project : {
-              fecha_trx : {$substr: ['$fecha_trx', 0, 6]},
+              fecha_trx : {$substr: ['$fecha', 0, 6]},
               n_trx: 1,
-              producto: 1
+              producto: 1,
+              num_trx:1
   
             }
           },
           {
             $group: {
-              _id: {"fecha_trx":"$fecha", "producto":"$producto"}, 
+              _id: {"fecha_trx":"$fecha_trx", "producto":"$producto"}, 
               "n_trx":{$sum: "$num_trx"}
             }
           }])
@@ -289,15 +292,16 @@ exports.obtener_n_trx_n_periodos = function(req, res, next, res_function){
           },
           {
             $project : {
-              fecha_trx : {$substr: ['$fecha_trx', 0, 4]},
+              fecha_trx : {$substr: ['$fecha', 0, 4]},
               n_trx: 1,
-              producto: 1
+              producto: 1,
+              num_trx:1
   
             }
           },
           {
             $group: {
-              _id: {"fecha_trx":"$fecha", "producto":"$producto"},
+              _id: {"fecha_trx":"$fecha_trx", "producto":"$producto"},
               "n_trx":{$sum: "$num_trx"}
             }
           }])
@@ -362,14 +366,14 @@ exports.obtener_suma_trx_n_periodo = function(req, res, next, res_function){
             fecha_trx : {$substr: ['$fecha', 0, 6]},
             prom_trx: 1,
             producto : 1,
-            monto : 1
+            total : 1
 
           }
         }, 
         {
           $group: {
             //_id: {$substr: ['$fecha_trx', 0, 6]}, 
-            _id: {"fecha_trx":"$fecha", "producto":"$producto"}, 
+            _id: {"fecha_trx":"$fecha_trx", "producto":"$producto"}, 
             "prom_trx":{$sum: "$total"},
             
           }
@@ -392,13 +396,13 @@ exports.obtener_suma_trx_n_periodo = function(req, res, next, res_function){
             fecha_trx : {$substr: ['$fecha', 0, 4]},
             prom_trx: 1,
             producto : 1,
-            monto : 1
+            total : 1
           }
         }, 
         {
           $group: {
             //_id: {$substr: ['$fecha_trx', 0, 4]}, 
-            _id: {"fecha_trx":"$fecha", "producto":"$producto"}, 
+            _id: {"fecha_trx":"$fecha_trx", "producto":"$producto"}, 
             "prom_trx":{$sum: "$total"},
             
           }
@@ -464,7 +468,7 @@ exports.obtener_suma_trx_n_periodo_before = function(req, res, next, res_functio
         },
         {
           $project : {
-            fecha : {$substr: ['$fecha_trx', 0, 6]},
+            fecha: {$substr: ['$fecha', 0, 6]},
             prom_trx: 1,
             producto : 1,
             monto : 1
@@ -475,7 +479,7 @@ exports.obtener_suma_trx_n_periodo_before = function(req, res, next, res_functio
           $group: {
             //_id: {$substr: ['$fecha_trx', 0, 6]}, 
             _id: {"fecha_trx":"$fecha", "producto":"$producto"}, 
-            "prom_trx":{$sum: "$monto"},
+            "prom_trx":{$sum: "$total"},
             
           }
         }, 
@@ -1117,7 +1121,7 @@ exports.obtener_valor_total_maximo = function(req, res, next, res_function){
       let descripcion = req.query.descripcion? req.query.descripcion:'provincia';
       let periodo = req.query.periodo? req.query.periodo:'';
       
-      let querytrx= {"fecha_trx": { $lt : fecha_fin, $gte: fecha_inicio}, 
+      let querytrx= {"fecha": { $lt : fecha_fin, $gte: fecha_inicio}, 
                      "producto":new RegExp('^' + producto)}
       if(localidad1=="default" && localidad2 != "default"){
             querytrx[descripcion]= new RegExp('^' + localidad2);
@@ -1136,14 +1140,14 @@ exports.obtener_valor_total_maximo = function(req, res, next, res_function){
     if(periodo === "DIARIO")
     {
 
-      dbo.collection("transaccion_log").aggregate([
+      dbo.collection("transaccion_log_processed").aggregate([
         {
           $match: querytrx,
         }, 
         {
           $group: {
-            _id: {"fecha_trx":"$fecha_trx"} , 
-            "prom_trx":{$sum: "$monto"},
+            _id: {"fecha_trx":"$fecha"} , 
+            "prom_trx":{$sum: "$total"},
           }
         }, 
         {
@@ -1163,15 +1167,15 @@ exports.obtener_valor_total_maximo = function(req, res, next, res_function){
     else if(periodo === "MENSUAL")
     {
       
-      dbo.collection("transaccion_log").aggregate([
+      dbo.collection("transaccion_log_processed").aggregate([
         {
           $match: querytrx,
 
         },
         {
           $group: {
-            _id:  {$substr: ['$fecha_trx', 0, 6]}, 
-            "prom_trx":{$sum: "$monto"},
+            _id:  {$substr: ['$fecha', 0, 6]}, 
+            "prom_trx":{$sum: "$total"},
             
           }
         }, 
@@ -1191,14 +1195,14 @@ exports.obtener_valor_total_maximo = function(req, res, next, res_function){
     }
     else if(periodo === "ANUAL")
     {
-      dbo.collection("transaccion_log").aggregate([
+      dbo.collection("transaccion_log_processed").aggregate([
         {
           $match: querytrx
         },
         {
           $group: {
-            _id: {$substr: ['$fecha_trx', 0, 4]},
-            "prom_trx":{$sum: "$monto"},
+            _id: {$substr: ['$fecha', 0, 4]},
+            "prom_trx":{$sum: "$total"},
           }
         },
         {
