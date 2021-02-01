@@ -1339,19 +1339,19 @@ exports.obtener_suma_trx_por_comercio = function(req, res, next, res_function){
 
 
   //let querytrx= {"fecha_trx": { $lt : fecha_fin, $gte: fecha_inicio}, "idcomercio": { $in: result}, "producto":new RegExp('^' + producto)};
-    let querytrx= {"fecha_trx": { $lt : fecha_fin, $gte: fecha_inicio}, 
+    let querytrx= {"fecha": { $lt : fecha_fin, $gte: fecha_inicio}, 
                    "provincia": new RegExp('^' + provincia.toUpperCase()), 
                    "ciudad": new RegExp('^' + ciudad.toUpperCase()), 
                   "barrio": new RegExp('^' + capitalizeWords(barrio))};
-  dbo.collection("transaccion_log").aggregate([
+  dbo.collection("transaccion_log_processed").aggregate([
                     {
                       $match: querytrx
                     },
                     {
                       $group: {
-                        _id:{"comercio":'$id',
+                        _id:{"comercio":'$idcomercio',
                             "producto":'$producto'},
-                        "suma":{$sum: '$monto'},
+                        "suma":{$sum: '$total'},
                       }
                     }])
                       .toArray(function(err2, resulttrx) {
