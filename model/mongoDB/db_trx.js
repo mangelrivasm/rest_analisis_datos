@@ -97,10 +97,7 @@ exports.obtener_n_trx_n_periodo = function(req, res, next, res_function){
   let ciudad = req.query.ciudad? req.query.ciudad:'';
   let barrio = req.query.barrio? req.query.barrio:'';
   let producto = req.query.producto? req.query.producto:'';
-  let querycomercio={"provincia": new RegExp('^' + provincia.toUpperCase()), 
-                     "ciudad": new RegExp('^' + ciudad.toUpperCase()), 
-                     "barrio": new RegExp('^' + capitalizeWords(barrio)),
-                     "codigo_merchant": new RegExp('^' + comercio)};
+
   let querytrx= {"fecha": { $lt : fecha_fin, $gte: fecha_inicio}, 
                      "producto":new RegExp('^' + producto),
                      "provincia": new RegExp('^' + provincia.toUpperCase()), 
@@ -238,7 +235,14 @@ exports.obtener_n_trx_n_periodos = function(req, res, next, res_function){
                  "idcomercio": new RegExp('^' + comercio),
                  "producto": new RegExp('^' +producto)};
       
-      
+    if(producto=="PAGO DE SERVICIOS"){
+      querytrx= {"fecha": { $lt : fecha_fin, $gte: fecha_inicio}, 
+                   "producto": {$in:["PAGO DE SERVICIOS", "RECAUDACIONES"]}, 
+                   "provincia": new RegExp('^' + provincia.toUpperCase()), 
+                   "ciudad": new RegExp('^' + ciudad.toUpperCase()), 
+                   "idcomercio": new RegExp('^' + comercio),
+                  "barrio": new RegExp('^' + capitalizeWords(barrio))};
+    }
       if(periodo === "DIARIO")
       {
         dbo.collection("transaccion_log_processed").aggregate([
@@ -334,6 +338,13 @@ exports.obtener_suma_trx_n_periodo = function(req, res, next, res_function){
                    "ciudad": new RegExp('^' + ciudad.toUpperCase()), 
                   "barrio": new RegExp('^' + capitalizeWords(barrio))};
     
+    if(producto=="PAGO DE SERVICIOS"){
+      querytrx= {"fecha": { $lt : fecha_fin, $gte: fecha_inicio}, 
+                   "producto": {$in:["PAGO DE SERVICIOS", "RECAUDACIONES"]}, 
+                   "provincia": new RegExp('^' + provincia.toUpperCase()), 
+                   "ciudad": new RegExp('^' + ciudad.toUpperCase()), 
+                  "barrio": new RegExp('^' + capitalizeWords(barrio))};
+    }
     
     if(periodo === "DIARIO")
     {
@@ -433,8 +444,7 @@ exports.obtener_suma_trx_n_periodo_before = function(req, res, next, res_functio
                    "provincia": new RegExp('^' + provincia.toUpperCase()), 
                    "ciudad": new RegExp('^' + ciudad.toUpperCase()), 
                   "barrio": new RegExp('^' + capitalizeWords(barrio))};
-    
-    
+
     if(periodo === "DIARIO")
     {
 
@@ -849,6 +859,9 @@ exports.obtener_suma_trx_n_periodo_x_lugar = function(req, res, next, res_functi
   if(producto !== "TODOS")
   {
     querytrx= {"fecha": { $lt : fecha_fin, $gte: fecha_inicio}, "producto":new RegExp('^' + producto)};
+    if(producto=="PAGO DE SERVICIOS"){
+      querytrx= {"fecha": { $lt : fecha_fin, $gte: fecha_inicio}, "producto":{$in: ["PAGO DE SERVICIOS", "RECAUDACIONES"]}};
+    }
   }
   else
   {
