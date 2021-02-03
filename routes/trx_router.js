@@ -40,6 +40,7 @@ router.get('/obtener_valor_total_maximo', trx_controller.obtener_valor_total_max
 router.get('/obtener_cantidad_maxima', trx_controller.obtener_cantidad_maxima);
 router.get('/obtener_informacion_comercios', trx_controller.obtener_informacion_comercios);
 router.get('/obtener_suma_trx_por_comercio', trx_controller.obtener_suma_trx_por_comercio);
+router.get('/getComerciosActivosPorTransaccion', trx_controller.getComerciosActivosPorTransaccion);
 
 
 

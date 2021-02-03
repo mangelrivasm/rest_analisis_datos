@@ -622,6 +622,38 @@ exports.obtener_comercios_por_locacion = function(req, res, next, res_function){
         }));
     }
 
+    function getComerciosActivosPorTransaccionV1(locacion, nivel, fecha_inicio, fecha_fin){
+      var dbo=mongo_connection.dbo;
+      var query={fecha:{$lt:fecha_fin, $gte:fecha_inicio}};
+      query[nivel]=locacion;
+      dbo.collection("transaccion_log_processed").distinct("idcomercio",query,
+      (function(err, result) {
+        if (err) console.log(err);
+        return result.length;
+      }))
+    }
+
+    
+    exports.getComerciosActivosPorTransaccion=function(req, res, next, res_function){
+      var dbo=mongo_connection.dbo;
+      let fecha_inicio = req.query.fecha_inicio? req.query.fecha_inicio: '';
+      let fecha_fin = req.query.fecha_fin? req.query.fecha_fin: '' ;
+      let nivel=req.query.nivel? req.query.nivel: 'provincia' ;
+      nivel=nivel.toLowerCase(); 
+      let querytrx= {"fecha": { $lt : fecha_fin, $gte: fecha_inicio}, "provincia":{$ne:""}};
+      var dic={}
+      dic[nivel]="$"+nivel
+
+      dbo.collection("transaccion_log_processed").aggregate([{$match: querytrx}, 
+                                              {$group:{_id:dic, 
+                                                       "comercios":{$addToSet: "$idcomercio"}}}, 
+                                              {$project: {_id: 1, activos:{$size: "$comercios"}}}]).toArray(function(err, resulttrx){
+
+      
+        if (err) console.log(err);
+        res_function(null,resulttrx, req, res, next);
+      });
+    }
 
     exports.obtener_grupo_rfm_por_nivel_geografico = function(req, res, next, res_function){
       var dbo=mongo_connection.dbo;
@@ -674,7 +706,6 @@ exports.obtener_comercios_por_locacion = function(req, res, next, res_function){
                                   "DORMIDO":0,
                                   "PERDIDO":0,
                                   "NO ACTIVIDAD":0};
-        console.log("resultado_por_locacionNNN", resultado_por_locacion);
         var comercios=0;
         for(var h=0; h<resultado_por_locacion.length; h++){
           comercios++;

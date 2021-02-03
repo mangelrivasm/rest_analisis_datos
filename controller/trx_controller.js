@@ -73,6 +73,8 @@ exports.obtener_suma_trx_n_periodo_x_lugar_before=function(req, res, next){
     db_trx.obtener_suma_trx_n_periodo_x_lugar_before(req, res, next, util_controller.response_json);
 }
 
+
+
 exports.obtener_pagos=function(req, res, next){
     db_pago.obtener_pagos(req, res, next, util_controller.response_json);
 }
@@ -129,6 +131,11 @@ exports.obtener_grupo_rfm_por_nivel_geografico=function(req, res, next){
 exports.obtener_informacion_comercios=function(req, res, next){
     db_comercio.obtener_informacion_comercios(req, res, next, util_controller.response_json);
 }
+
+exports.getComerciosActivosPorTransaccion=function(req, res, next){
+    db_comercio.getComerciosActivosPorTransaccion(req, res, next, util_controller.response_json);
+}
+
 
 exports.obtener_ejecutivos=function(req, res, next){
     db_ejecutivo.obtener_ejecutivos(req, res, next, util_controller.response_json);
