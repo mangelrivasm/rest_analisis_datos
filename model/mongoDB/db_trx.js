@@ -254,7 +254,11 @@ exports.obtener_n_trx_n_periodos = function(req, res, next, res_function){
               _id: {"fecha_trx":"$fecha", "producto":"$producto"}, 
               "n_trx":{$sum: "$num_trx"}
             }
-          }])
+          },
+          {
+            $sort: {"n_trx": -1}
+          }
+        ])
             .toArray(function(err2, resulttrx) {
   
           if (err2) console.log(err2);
@@ -281,7 +285,11 @@ exports.obtener_n_trx_n_periodos = function(req, res, next, res_function){
               _id: {"fecha_trx":"$fecha_trx", "producto":"$producto"}, 
               "n_trx":{$sum: "$num_trx"}
             }
-          }])
+          },
+          {
+            $sort: {"n_trx": -1}
+          }
+        ])
             .toArray(function(err2, resulttrx) {
   
           if (err2) console.log(err2);
@@ -308,7 +316,11 @@ exports.obtener_n_trx_n_periodos = function(req, res, next, res_function){
               _id: {"fecha_trx":"$fecha_trx", "producto":"$producto"},
               "n_trx":{$sum: "$num_trx"}
             }
-          }])
+          },
+          {
+            $sort: {"n_trx": -1}
+          }
+        ])
             .toArray(function(err2, resulttrx) {
   
           if (err2) console.log(err2);
@@ -357,6 +369,9 @@ exports.obtener_suma_trx_n_periodo = function(req, res, next, res_function){
             _id: {"fecha_trx":"$fecha", "producto":"$producto"} , 
             "prom_trx":{$sum: "$total"},
           }
+        },
+        {
+          $sort: {"prom_trx": -1}
         }
       ])
       .toArray(function(err2, resulttrx) {
@@ -388,6 +403,9 @@ exports.obtener_suma_trx_n_periodo = function(req, res, next, res_function){
             "prom_trx":{$sum: "$total"},
             
           }
+        },
+        {
+          $sort: {"prom_trx": -1}
         }
       ])
       .toArray(function(err2, resulttrx) {
@@ -417,6 +435,9 @@ exports.obtener_suma_trx_n_periodo = function(req, res, next, res_function){
             "prom_trx":{$sum: "$total"},
             
           }
+        },
+        {
+          $sort: {"prom_trx": -1}
         }
       ])
       .toArray(function(err2, resulttrx) {
